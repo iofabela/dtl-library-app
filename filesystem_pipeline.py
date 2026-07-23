@@ -104,9 +104,15 @@ def build_resources(sample: bool = False):
 
 def load(sample: bool = False) -> None:
     pipeline = dlt.pipeline(
-        pipeline_name="agent_logs",
+        # The duckdb catalog (db file) name derives from pipeline_name, so it
+        # MUST differ from dataset_name (the schema). If both are
+        # "temp_agent_logs", duckdb sees a catalog and a schema with the same
+        # name and raises "Ambiguous reference to catalog or schema". Keep the
+        # catalog distinct ("temp_agent_logs_store") from the dataset schema
+        # ("temp_agent_logs"). The dashboard reads this same db + schema.
+        pipeline_name="temp_agent_logs_store",
         destination="duckdb",
-        dataset_name="agent_logs",
+        dataset_name="temp_agent_logs",
         dev_mode=sample,  # throwaway dataset for sample runs; keep data for full load
     )
     info = pipeline.run(

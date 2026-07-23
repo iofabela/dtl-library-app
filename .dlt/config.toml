@@ -6,3 +6,8 @@ bucket_url = "file:///Users/ifabela/.claude"
 [runtime]
 log_level="WARNING"  # the system log level of dlt
 # use the dlthub_telemetry setting to enable/disable anonymous usage data reporting, see https://dlthub.com/docs/reference/telemetry
+workspace_id = "fe400dcd-6618-4f52-a56e-3af185032e19"
+organization_id = "e2e1c7eb-2749-4e40-9069-5b0998adc5a7"
+
+[workspace.settings]
+name = "playground"
